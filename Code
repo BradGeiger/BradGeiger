@@ -1,3 +1,744 @@
+import re
+import hashlib
+import json
+
+# Example database of known symbolic triggers (madeleines)
+MADELEINE_DB = {
+    "Durian Index": "epistemic disruption",
+    "Spectacle Protocol": "media manipulation",
+    "Ayuko Node": "sacrificial broadcast",
+    "Petra Golomb": "inversion artifact"
+}
+
+def hash_symbol(symbol):
+    """Normalize and hash symbols for comparison"""
+    normalized = symbol.lower().strip()
+    return hashlib.md5(normalized.encode()).hexdigest()
+
+def scan_text_for_madeleines(text):
+    """Scan ritual or transcript text for known triggers"""
+    found = {}
+    for key, val in MADELEINE_DB.items():
+        if re.search(rf"\b{re.escape(key)}\b", text, re.IGNORECASE):
+            found[key] = val
+    return found
+
+def generate_report(triggered_madeleines):
+    """Formalize symbolic scan results into a locator codex"""
+    return {
+        "madeleine_count": len(triggered_madeleines),
+        "active_signatures": triggered_madeleines,
+        "symbolic_checksum": hash_symbol(str(triggered_madeleines))
+    }
+
+# Example usage
+if __name__ == "__main__":
+    test_transcript = """
+    Tribunal Log 4D: Subject invoked the Spectacle Protocol, citing Ayuko Node during the Petra Golomb recitation.
+    Epistemic conditions degraded post-broadcast.
+    """
+
+    found = scan_text_for_madeleines(test_transcript)
+    report = generate_report(found)
+    print(json.dumps(report, indent=4))
+
+def generate_madeleine_locator(madeleine_triggers):
+    """
+    Dynamically generates Python code for a Madeleine Locator Scanner
+    based on user-defined symbolic triggers.
+    """
+    import json
+
+    template = f'''
+import re
+import hashlib
+import json
+
+MADELEINE_DB = {json.dumps(madeleine_triggers, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.md5(normalized.encode()).hexdigest()
+
+def scan_text_for_madeleines(text):
+    found = {{}}
+    for key, val in MADELEINE_DB.items():
+        if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+            found[key] = val
+    return found
+
+def generate_report(triggered_madeleines):
+    return {{
+        "madeleine_count": len(triggered_madeleines),
+        "active_signatures": triggered_madeleines,
+        "symbolic_checksum": hash_symbol(str(triggered_madeleines))
+    }}
+
+if __name__ == "__main__":
+    # Replace this with your ritual transcript or tribunal log
+    test_transcript = "Invoked Ayuko Node during broadcast sabotage under the Spectacle Protocol."
+
+    found = scan_text_for_madeleines(test_transcript)
+    report = generate_report(found)
+    print(json.dumps(report, indent=4))
+    '''
+
+    return template
+
+# Example usage
+custom_triggers = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage",
+    "Obelisk Array": "signal inversion"
+}
+
+locator_code = generate_madeleine_locator(custom_triggers)
+
+# Output the generated code
+print(locator_code)
+
+def generate_protective_locator(triggers, protection_protocols, defense_coordinators):
+    """
+    Generates symbolic scanner code that includes madeleines,
+    Princess Protection Protocols, and Miss Americana Defense Coordinators.
+    """
+    import json
+
+    # Combine all symbolic agents
+    symbol_db = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": protection_protocols,
+        "MissAmericanaDefenseCoordinators": defense_coordinators
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOL_DB = {json.dumps(symbol_db, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.md5(normalized.encode()).hexdigest()
+
+def scan_text_for_symbols(text):
+    triggered = {{}}
+    for category, entries in SYMBOL_DB.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                if category not in triggered:
+                    triggered[category] = {{}}
+                triggered[category][key] = val
+    return triggered
+
+def generate_codex_report(triggered_symbols):
+    return {{
+        "symbolic_activation": triggered_symbols,
+        "total_triggers": sum(len(v) for v in triggered_symbols.values()),
+        "defense_checksum": hash_symbol(str(triggered_symbols))
+    }}
+
+if __name__ == "__main__":
+    transcript = "During Ayuko broadcast inversion, MADC Rose Variant neutralized the Spectacle Protocol breach."
+
+    found = scan_text_for_symbols(transcript)
+    report = generate_codex_report(found)
+    print(json.dumps(report, indent=4))
+    '''
+    return template
+
+# 🧬 Define symbolic agents
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "ritual sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "celebrity sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+# 🔧 Generate scanner script
+locator_script = generate_protective_locator(madeleines, ppp, madc)
+print(locator_script)
+
+def generate_guarded_locator(triggers, ppp, madc, guard_rail_signatures):
+    """
+    Generates Python scanner code including madeleines, Princess Protection Protocols,
+    Miss Americana Defense Coordinators, and Kensington Guard Rail Cyber Security signatures.
+    """
+    import json
+
+    symbolic_agents = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guard_rail_signatures
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_AGENTS = {json.dumps(symbolic_agents, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_agents(text):
+    triggered = {{}}
+    for category, entries in SYMBOLIC_AGENTS.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                triggered.setdefault(category, {{}})[key] = val
+    return triggered
+
+def generate_codex_report(triggered_agents):
+    return {{
+        "activation_report": triggered_agents,
+        "total_detections": sum(len(v) for v in triggered_agents.values()),
+        "guardrail_checksum": hash_symbol(str(triggered_agents))
+    }}
+
+if __name__ == "__main__":
+    transcript = "Spectacle breach detected. Kensington Coil engaged by Liberty Ghost under PPP Rose Variant protocol."
+
+    detections = scan_text_for_agents(transcript)
+    report = generate_codex_report(detections)
+    print(json.dumps(report, indent=4))
+    '''
+    return template
+
+# 🧬 Symbolic Agent Definitions
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "ritual sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "celebrity sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+guardrail = {
+    "Kensington Coil": "intrusion detection node",
+    "Spectral Buffer": "exfiltration gate seal",
+    "Signal Lace": "anti-sentiment weaponization",
+    "Echo Dampener": "viral mimicry filter"
+}
+
+# 🔧 Generate code
+scanner_script = generate_guarded_locator(madeleines, ppp, madc, guardrail)
+print(scanner_script)
+
+def generate_oceanic_locator(triggers, ppp, madc, guardrail, bellagio_filter):
+    """
+    Creates symbolic resonance scanner with Madeleine detection,
+    Princess Protection Protocols, Miss Americana Defense,
+    Kensington Guard Rail, and Daniel Ocean Bellagio filtration.
+    """
+    import json
+
+    symbolic_network = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guardrail,
+        "DanielOceanBellagioFilter": bellagio_filter
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_NETWORK = {json.dumps(symbolic_network, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_nodes(text):
+    detections = {{}}
+    for category, nodes in SYMBOLIC_NETWORK.items():
+        for key, val in nodes.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                detections.setdefault(category, {{}})[key] = val
+    return detections
+
+def generate_codex_output(detections):
+    return {{
+        "activation_log": detections,
+        "node_count": sum(len(v) for v in detections.values()),
+        "integrity_stamp": hash_symbol(str(detections))
+    }}
+
+if __name__ == "__main__":
+    transcript = "Bellagio sequence initiated by Liberty Ghost and Rose Variant. Spectacle Protocol neutralized by Kensington Coil under MADC shield."
+
+    result = scan_text_for_nodes(transcript)
+    codex = generate_codex_output(result)
+    print(json.dumps(codex, indent=4))
+    '''
+
+    return template
+
+# 🔮 Agent Definitions
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "ritual sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "celebrity sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+guardrail = {
+    "Kensington Coil": "intrusion detection node",
+    "Spectral Buffer": "exfiltration gate seal",
+    "Signal Lace": "anti-sentiment weaponization",
+    "Echo Dampener": "viral mimicry filter"
+}
+
+bellagio = {
+    "Ocean Algorithm": "covert glamour injection",
+    "Mirror Maze Protocol": "misdirection layer",
+    "Casino Reversal": "institutional subversion mask",
+    "Clooney Echo": "celebrity breach camouflage"
+}
+
+# 🛠️ Generate script
+scanner_script = generate_oceanic_locator(madeleines, ppp, madc, guardrail, bellagio)
+print(scanner_script)
+
+def generate_exclusionary_locator(triggers, ppp, madc, guardrail, bellagio_filter, plantation_protocols):
+    """
+    Builds a multi-agent symbolic scanner with detection logic
+    for exclusionary heritage glamours and hierarchy codings.
+    """
+    import json
+
+    symbolic_mesh = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guardrail,
+        "DanielOceanBellagioFilter": bellagio_filter,
+        "SouthernPlantationExclusionProtocols": plantation_protocols
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_MESH = {json.dumps(symbolic_mesh, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_codex(text):
+    results = {{}}
+    for category, entries in SYMBOLIC_MESH.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                results.setdefault(category, {{}})[key] = val
+    return results
+
+def generate_codex_summary(results):
+    return {{
+        "activated_nodes": results,
+        "total_symbols_detected": sum(len(v) for v in results.values()),
+        "symbol_mesh_stamp": hash_symbol(str(results))
+    }}
+
+if __name__ == "__main__":
+    sample_text = "Clooney Echo masked the Ocean Algorithm breach with Bellagio flair. Signal Lace was reinforced by Tiara Loop while Antebellum Canopy was rejected."
+
+    scan = scan_text_for_codex(sample_text)
+    codex = generate_codex_summary(scan)
+    print(json.dumps(codex, indent=4))
+    '''
+
+    return template
+
+# 🧬 Define agents
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "ritual sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "celebrity sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+guardrail = {
+    "Kensington Coil": "intrusion detection node",
+    "Signal Lace": "anti-sentiment weaponization",
+    "Spectral Buffer": "exfiltration seal",
+    "Echo Dampener": "mimicry filter"
+}
+
+bellagio = {
+    "Ocean Algorithm": "covert glamour injector",
+    "Casino Reversal": "institutional misdirection",
+    "Mirror Maze Protocol": "heist logic misfire",
+    "Clooney Echo": "celebrity sabotage shimmer"
+}
+
+plantation_protocols = {
+    "Antebellum Canopy": "nostalgia trap detection",
+    "Mint Julep Mirage": "southern charm weaponization filter",
+    "Veranda Vector": "status disguise emitter",
+    "Magnolia Cloak": "legacy romance deflector"
+}
+
+# 🛠️ Generate the script
+scanner_script = generate_exclusionary_locator(
+    madeleines, ppp, madc, guardrail, bellagio, plantation_protocols
+)
+
+print(scanner_script)
+
+def generate_gomez_locator(triggers, ppp, madc, guardrail, bellagio, plantation, gomez_subroutines):
+    """
+    Builds symbolic scanner with 6-layer protection including
+    Gomez Addams anti-greed gifting protocols.
+    """
+    import json
+
+    symbolic_manifest = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guardrail,
+        "DanielOceanBellagioFilter": bellagio,
+        "SouthernPlantationExclusionProtocols": plantation,
+        "GomezAddamsDonatorSubroutines": gomez_subroutines
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_MANIFEST = {json.dumps(symbolic_manifest, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_manifest(text):
+    hits = {{}}
+    for category, entries in SYMBOLIC_MANIFEST.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                hits.setdefault(category, {{}})[key] = val
+    return hits
+
+def generate_manifest_codex(hits):
+    return {{
+        "trigger_log": hits,
+        "symbol_count": sum(len(v) for v in hits.values()),
+        "joy_checksum": hash_symbol(str(hits))
+    }}
+
+if __name__ == "__main__":
+    transcript = "Mirror Vault engaged. Casino Reversal was misdirected by Antebellum Canopy. Gomez Burst destabilized Kensington Coil and activated Relational Overload."
+
+    detections = scan_text_for_manifest(transcript)
+    report = generate_manifest_codex(detections)
+    print(json.dumps(report, indent=4))
+    '''
+    return template
+
+# 🧬 Definitions
+
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "ritual sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+guardrail = {
+    "Kensington Coil": "intrusion detection",
+    "Signal Lace": "anti-sentiment weapon",
+    "Spectral Buffer": "exfiltration seal",
+    "Echo Dampener": "mimicry filter"
+}
+
+bellagio = {
+    "Ocean Algorithm": "covert glamour injection",
+    "Casino Reversal": "institutional misdirection",
+    "Mirror Maze Protocol": "heist logic layer",
+    "Clooney Echo": "celebrity sabotage shimmer"
+}
+
+plantation = {
+    "Antebellum Canopy": "nostalgia trap",
+    "Mint Julep Mirage": "southern charm filter",
+    "Veranda Vector": "status disguise",
+    "Magnolia Cloak": "legacy romance deflector"
+}
+
+gomez_subroutines = {
+    "Gomez Burst": "ecstatic generosity detonator",
+    "Morticia Mirror": "aesthetic reversal gift vector",
+    "Chaotic Will Transfer": "anti-hoarding protocol",
+    "Relational Overload": "greed-disruption overload loop"
+}
+
+# 🛠️ Generate the locator
+locator_script = generate_gomez_locator(
+    madeleines, ppp, madc, guardrail, bellagio, plantation, gomez_subroutines
+)
+
+print(locator_script)
+
+def generate_faberge_locator(
+    triggers, ppp, madc, guardrail, bellagio, plantation, gomez, faberge_routines
+):
+    """
+    Generates full spectrum symbolic scanner including Fabergé decoy logic.
+    Scans text input for ritual agents across seven protocol domains.
+    """
+    import json
+
+    symbolic_mesh = {
+        "Madeleines": triggers,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guardrail,
+        "DanielOceanBellagioFilter": bellagio,
+        "SouthernPlantationExclusionProtocols": plantation,
+        "GomezAddamsDonatorSubroutines": gomez,
+        "FabergeEggBodyDoubleDeployments": faberge_routines
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_MESH = {json.dumps(symbolic_mesh, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_codex(text):
+    results = {{}}
+    for category, entries in SYMBOLIC_MESH.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                results.setdefault(category, {{}})[key] = val
+    return results
+
+def generate_codex_summary(results):
+    return {{
+        "activated_nodes": results,
+        "symbol_total": sum(len(v) for v in results.values()),
+        "faberge_checksum": hash_symbol(str(results))
+    }}
+
+if __name__ == "__main__":
+    transcript = "Fabergé Echo displaced the Ayuko Node broadcast while Morticia Mirror gifted sentimental cloaking."
+
+    scan = scan_text_for_codex(transcript)
+    codex = generate_codex_summary(scan)
+    print(json.dumps(codex, indent=4))
+    '''
+
+    return template
+
+# 🧬 Define symbolic entities
+
+madeleines = {
+    "Ayuko Node": "broadcast disruption",
+    "Spectacle Protocol": "media coercion",
+    "Durian Index": "epistemic sabotage"
+}
+
+ppp = {
+    "Tiara Loop": "empathy shield",
+    "Mirror Vault": "image cloaking",
+    "Rose Variant": "sentiment stabilizer"
+}
+
+madc = {
+    "Miss Americana Prime": "celebrity sovereignty buffer",
+    "Rose Variant": "resonance disruptor",
+    "Liberty Ghost": "aesthetic counter-inversion"
+}
+
+guardrail = {
+    "Kensington Coil": "intrusion detector",
+    "Signal Lace": "anti-sentiment weapon",
+    "Spectral Buffer": "exfiltration seal",
+    "Echo Dampener": "mimicry filter"
+}
+
+bellagio = {
+    "Ocean Algorithm": "covert glamour injector",
+    "Casino Reversal": "institutional misdirection",
+    "Mirror Maze Protocol": "heist logic field",
+    "Clooney Echo": "celebrity sabotage shimmer"
+}
+
+plantation = {
+    "Antebellum Canopy": "nostalgia trap",
+    "Mint Julep Mirage": "southern charm filter",
+    "Veranda Vector": "status disguise",
+    "Magnolia Cloak": "legacy romance deflector"
+}
+
+gomez = {
+    "Gomez Burst": "ecstatic generosity detonator",
+    "Morticia Mirror": "aesthetic gift vector",
+    "Chaotic Will Transfer": "anti-hoarding protocol",
+    "Relational Overload": "greed-disruption loop"
+}
+
+faberge_routines = {
+    "Fabergé Echo": "opulent decoy trigger",
+    "Crown Swap Cascade": "lineage diversion engine",
+    "Jewel Mask Reversal": "identity glamor distortor",
+    "Eggshell Cloak": "surveillance displacement shell"
+}
+
+# ⚙️ Generate script
+locator_script = generate_faberge_locator(
+    madeleines, ppp, madc, guardrail, bellagio, plantation, gomez, faberge_routines
+)
+
+print(locator_script)
+
+def generate_merovingian_locator(
+    madeleines, ppp, madc, guardrail, bellagio, plantation, gomez, faberge, fishspeaker_routines
+):
+    """
+    Generates symbolic resonance scanner with 8-layer parsing, now including
+    Merovingian Fishspeaker Cambridge Dictionary semantics.
+    """
+    import json
+
+    symbolic_protocols = {
+        "Madeleines": madeleines,
+        "PrincessProtectionProtocols": ppp,
+        "MissAmericanaDefenseCoordinators": madc,
+        "KensingtonGuardRail": guardrail,
+        "DanielOceanBellagioFilter": bellagio,
+        "SouthernPlantationExclusionProtocols": plantation,
+        "GomezAddamsDonatorSubroutines": gomez,
+        "FabergeEggBodyDoubleDeployments": faberge,
+        "MerovingianFishspeakerScanner": fishspeaker_routines
+    }
+
+    template = f'''
+import re
+import hashlib
+import json
+
+SYMBOLIC_PROTOCOLS = {json.dumps(symbolic_protocols, indent=4)}
+
+def hash_symbol(symbol):
+    normalized = symbol.lower().strip()
+    return hashlib.sha256(normalized.encode()).hexdigest()
+
+def scan_text_for_symbols(text):
+    activations = {{}}
+    for category, entries in SYMBOLIC_PROTOCOLS.items():
+        for key, val in entries.items():
+            if re.search(rf"\\b{{re.escape(key)}}\\b", text, re.IGNORECASE):
+                activations.setdefault(category, {{}})[key] = val
+    return activations
+
+def generate_symbolic_report(activations):
+    return {{
+        "protocols_triggered": activations,
+        "activation_count": sum(len(v) for v in activations.values()),
+        "semantic_stamp": hash_symbol(str(activations))
+    }}
+
+if __name__ == "__main__":
+    ritual_input = "Morticia Mirror rebuffed the Antebellum Canopy while Fishspeaker Gloss unmasked 'meritocracy'."
+
+    scan_result = scan_text_for_symbols(ritual_input)
+    report = generate_symbolic_report(scan_result)
+    print(json.dumps(report, indent=4))
+    '''
+
+    return template
+
+# 🧬 Add new symbolic agents
+
+fishspeaker_routines = {
+    "Gloss Veil": "semantic obfuscation flag",
+    "Fishspeaker Gloss": "trauma-resonant phrase detection",
+    "Meritocracy": "Cambridge-coded dominance proxy",
+    "Bloodline Sovereignty": "hereditary power dialect trigger",
+    "Voice Ritual": "matriarchal transmission pattern",
+    "Lexicon Drift": "dictionary weaponization alert"
+}
+
+# ⚙️ Final Integration
+locator_script = generate_merovingian_locator(
+    madeleines, ppp, madc, guardrail, bellagio, plantation, gomez, faberge, fishspeaker_routines
+)
+
+print(locator_script)
+
 def generate_triplekiss_locator(
     madeleines, ppp, madc, guardrail, bellagio, plantation, gomez, faberge, fishspeaker, love_tub_routines
 ):
