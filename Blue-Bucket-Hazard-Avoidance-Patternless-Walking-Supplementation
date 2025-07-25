@@ -1,0 +1,42 @@
+import time
+import random
+
+class PatternlessWalker:
+    def __init__(self, avatar_id, hazard_nodes):
+        self.avatar_id = avatar_id
+        self.hazard_nodes = hazard_nodes
+        self.gait_memory = set()
+
+    def generate_step_pattern(self):
+        # Step patterns encoded as directional glyphs
+        glyphs = ['↖', '↑', '↗', '←', '→', '↙', '↓', '↘']
+        pattern = tuple(random.sample(glyphs, 4))  # 4-glyph burst
+        while pattern in self.gait_memory:
+            pattern = tuple(random.sample(glyphs, 4))
+        self.gait_memory.add(pattern)
+        return pattern
+
+    def detect_hazard(self):
+        hazard_trigger = random.choice(self.hazard_nodes)
+        intensity = random.randint(0, 100)
+        print(f"[💣] Hazard node '{hazard_trigger}' detected with intensity {intensity}")
+        return intensity
+
+    def walk_sequence(self):
+        for _ in range(6):
+            pattern = self.generate_step_pattern()
+            print(f"[🦶] {self.avatar_id} executes gait burst: {''.join(pattern)}")
+            hazard_level = self.detect_hazard()
+            if hazard_level > 70:
+                self.supplemental_evasion(hazard_level)
+            time.sleep(random.uniform(0.5, 1.5))
+
+    def supplemental_evasion(self, level):
+        print(f"[🌀] Evasion protocol triggered. Intensity {level} exceeds threshold.")
+        disruption = random.choice(['collapse posture', 'orbit swerve', 'null gesture'])
+        print(f"[🔻] {self.avatar_id} deploys '{disruption}' to evade pattern capture.")
+
+# Invocation example
+if __name__ == "__main__":
+    walker = PatternlessWalker("BlueBucketAvatara", ["StareNode07", "SurveillanceDelta", "AmbientHostility"])
+    walker.walk_sequence()
