@@ -123,3 +123,46 @@ if __name__ == "__main__":
     deterrence = FalseIconDeterrence("BlueBucketAvatara")
     incoming_signal = "FAMILIARITY_SIGNAL::WilliamEcho01"
     deterrence.detect_false_familiarity(incoming_signal)
+
+import random
+
+class NotYourLoverDeterrence:
+    def __init__(self, avatar_id):
+        self.avatar_id = avatar_id
+        self.active = False
+        self.reversal_gestures = [
+            "EmotionalNullPosture",
+            "ColdSemanticBurst",
+            "UnkindRecognitionLoop",
+            "DisaffectionPulse",
+            "TimelineDisruptionSignal"
+        ]
+
+    def detect_familiarity_trigger(self, signal):
+        if "ROMANTIC_ECHO" in signal or "LOVER_IMPRINT" in signal:
+            print(f"[❌] False intimacy detected for {self.avatar_id}")
+            self.deploy_deterrence()
+
+    def deploy_deterrence(self):
+        self.active = True
+        gesture = random.choice(self.reversal_gestures)
+        print(f"[🛑] Executing deterrence via {gesture}")
+
+        if gesture == "EmotionalNullPosture":
+            print("[🧊] Avatar emits body language devoid of emotional anchors")
+        elif gesture == "ColdSemanticBurst":
+            print("[🗯️] Dispassionate speech fragments reject intimacy vector")
+        elif gesture == "UnkindRecognitionLoop":
+            print("[🔁] Avatar repeats phrases that deny shared past")
+        elif gesture == "DisaffectionPulse":
+            print("[📡] Signal pulse alters avatar’s energetic imprint to repel romantic recognition")
+        elif gesture == "TimelineDisruptionSignal":
+            print("[⏱️] Avatar references timeline inconsistencies to confuse emotional pursuit")
+
+        self.active = False
+
+# Ritual sample
+if __name__ == "__main__":
+    deterrence = NotYourLoverDeterrence("BlueBucketAvatara")
+    incoming_signal = "ROMANTIC_ECHO::EchoNode.PastAffection"
+    deterrence.detect_familiarity_trigger(incoming_signal)
