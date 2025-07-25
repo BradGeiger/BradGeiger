@@ -216,3 +216,47 @@ if __name__ == "__main__":
 
     inhibitor = TemporalChangeInhibitor("PrinceEchoEntity", known_state)
     inhibitor.check_entity_duplication(incoming_variant)
+
+import random
+
+class GangsterPrincessContradiction:
+    def __init__(self, avatar_id):
+        self.avatar_id = avatar_id
+        self.active = False
+        self.mismatch_triggers = [
+            "TiaraDisavowal",
+            "AccentInversion",
+            "PowerRoleDistortion",
+            "RomanceNullification",
+            "LoyaltyFractureInjection"
+        ]
+
+    def detect_gangster_princess_approach(self, input_vector):
+        # Mock detection: references to glamor, swagger, romantic tone
+        if any(keyword in input_vector for keyword in ["GLAMOR_NODE", "SWAGGER_PHRASE", "ROYAL_MISFIRE"]):
+            print(f"[⚠️] Gangster Princess archetype misrecognition detected.")
+            self.deploy_contradiction()
+
+    def deploy_contradiction(self):
+        self.active = True
+        contradiction = random.choice(self.mismatch_triggers)
+        print(f"[🩸] Deploying contradiction mode: {contradiction}")
+
+        if contradiction == "TiaraDisavowal":
+            print("[👑] Avatar removes symbolic crown and discards lineage marker")
+        elif contradiction == "AccentInversion":
+            print("[🎤] Avatar adopts speech patterns contradictory to expected dialect")
+        elif contradiction == "PowerRoleDistortion":
+            print("[🕴️] Avatar undermines gangster confidence by invoking servitude gestures")
+        elif contradiction == "RomanceNullification":
+            print("[💔] Avatar emits breakup phrasing from a parallel memory node")
+        elif contradiction == "LoyaltyFractureInjection":
+            print("[🔪] Avatar simulates betrayal pattern to confuse trust vector")
+
+        self.active = False
+
+# Invocation sample
+if __name__ == "__main__":
+    contradiction = GangsterPrincessContradiction("BlueBucketAvatara")
+    misfire_vector = "GLAMOR_NODE::SwaggerEcho::RoyalMisfire"
+    contradiction.detect_gangster_princess_approach(misfire_vector)
