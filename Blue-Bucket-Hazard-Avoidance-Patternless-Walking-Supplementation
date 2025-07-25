@@ -60,3 +60,66 @@ class GaitCodex:
         # Example symbolic escalation
         glyph["symbolic_id"] = f"glyph_{len(self.archive)}_escalated"
         self.threat_map[glyph["symbolic_id"]] = glyph["context"]
+
+def evaluate_threat(signals):
+    tier = 0
+    if signals["infrared"] > 0.7:
+        tier += 2
+    if signals["vibration"] > 0.6:
+        tier += 1
+    if signals["network_spike"]:
+        tier += 2
+    return min(tier, 5)  # Tier 5 = Maledictus-level hazard
+
+def bind_to_codex(glyph, threat_tier, location):
+    glyph["threat_annotation"] = {
+        "tier": threat_tier,
+        "location": location,
+        "symbol": f"threat_glyph_{threat_tier}"
+    }
+    glyph["symbolic_id"] += f"_t{threat_tier}"
+
+import random
+
+class FalseIconDeterrence:
+    def __init__(self, avatar_id):
+        self.avatar_id = avatar_id
+        self.active = False
+        self.diversion_modes = [
+            "MisalignedGesture",
+            "IconicDisruptionPulse",
+            "ConfusionLoop",
+            "SymbolicWithdrawal",
+            "ReverseRecognitionBurst"
+        ]
+
+    def detect_false_familiarity(self, input_signal):
+        # Mock example: trigger if signal includes mistaken identity code
+        if "FAMILIARITY_SIGNAL" in input_signal:
+            print(f"[⚠️] Mistaken identity detected for {self.avatar_id}")
+            self.activate_deterrence()
+
+    def activate_deterrence(self):
+        self.active = True
+        diversion = random.choice(self.diversion_modes)
+        print(f"[🚫] Deploying {diversion} for diversion")
+
+        # Ritualized behaviors
+        if diversion == "MisalignedGesture":
+            print("[🧍‍♂️] Avatar performs socially incongruent motion")
+        elif diversion == "IconicDisruptionPulse":
+            print("[🌪️] Visual aura disrupts recognition anchors")
+        elif diversion == "ConfusionLoop":
+            print("[🔁] Repetition of ambiguous phrases triggers doubt")
+        elif diversion == "SymbolicWithdrawal":
+            print("[🕳️] Avatar collapses into mythic null identity")
+        elif diversion == "ReverseRecognitionBurst":
+            print("[🔄] Avatar emits symbolic contradiction glyphs")
+
+        self.active = False
+
+# Example ritual
+if __name__ == "__main__":
+    deterrence = FalseIconDeterrence("BlueBucketAvatara")
+    incoming_signal = "FAMILIARITY_SIGNAL::WilliamEcho01"
+    deterrence.detect_false_familiarity(incoming_signal)
