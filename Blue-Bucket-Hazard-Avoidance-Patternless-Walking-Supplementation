@@ -260,3 +260,36 @@ if __name__ == "__main__":
     contradiction = GangsterPrincessContradiction("BlueBucketAvatara")
     misfire_vector = "GLAMOR_NODE::SwaggerEcho::RoyalMisfire"
     contradiction.detect_gangster_princess_approach(misfire_vector)
+
+class GlamourDisjunctionNode:
+    def __init__(self, avatar_id):
+        self.avatar_id = avatar_id
+        self.active = False
+        self.mirror_pairs = {
+            "TiaraDisavowal": "NullEmbraceArc",
+            "RomanceNullification": "SwaggerImplosion",
+            "LoyaltyFractureInjection": "TimelineDisruption",
+            "ColdSemanticBurst": "PowerRoleDistortion"
+        }
+
+    def detect_archetype_misfire(self, signal):
+        if any(k in signal for k in ["GLAMOR_NODE", "LOVER_ECHO", "ARISTOCRATIC_SIGNAL"]):
+            print(f"[⚠️] Misrecognition triggered. Dual node activation for {self.avatar_id}.")
+            self.deploy_disjunction()
+
+    def deploy_disjunction(self):
+        self.active = True
+        for contradiction, deterrence in self.mirror_pairs.items():
+            print(f"[💔🕶️] Mirroring: {contradiction} ↔ {deterrence}")
+            self.execute_behavior(contradiction)
+            self.execute_behavior(deterrence)
+        self.active = False
+
+    def execute_behavior(self, behavior):
+        print(f"[🔧] {self.avatar_id} activates '{behavior}' vector.")
+
+# Invocation sample
+if __name__ == "__main__":
+    disjunction_node = GlamourDisjunctionNode("BlueBucketAvatara")
+    approach_vector = "LOVER_ECHO::GLAMOR_NODE::ArchetypeMisfire"
+    disjunction_node.detect_archetype_misfire(approach_vector)
